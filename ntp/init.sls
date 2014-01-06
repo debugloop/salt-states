@@ -11,4 +11,4 @@ ntp:
   file:
     - managed
     - source:
-      - salt://files/ntp/ntp.conf
+      - salt://ntp/ntp.conf
