@@ -1,0 +1,21 @@
+# This is a minimized config for the salt master, as most of the defaults are
+# well chosen.
+
+# This removes unnecessary output from the salt command
+state_output: mixed
+
+# This sets the gitfs backend as our only method of state retrieval.
+# Environments are mapped to branches of the same name, while master maps to
+# the base environment.
+fileserver_backend:
+  - roots
+  - git
+
+# Specify the exact location of one or more git repositorys here:
+gitfs_remotes:
+  - git@github.com:danieljn/salt-states.git
+
+# Specify the directories used for the state tree
+file_roots:
+  base:
+    - /srv/salt/
