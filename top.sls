@@ -1,6 +1,7 @@
 base:
   '*':
     - basic_packages
+    - myuser
     - ntp
 
   'nightfort':
