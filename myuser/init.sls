@@ -6,6 +6,7 @@ danieln:
   user.present:
     - fullname: Daniel Naegele
     - home: /home/danieln
+    - shell: /bin/bash
     - create_home: True
     - remove_groups: False
     - groups:
