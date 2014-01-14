@@ -11,6 +11,9 @@ fileserver_backend:
   - roots
   - git
 
+runner_dirs:
+  - /srv/runners
+
 # Specify the exact location of one or more git repositorys here:
 gitfs_remotes:
   - git@github.com:danieljn/salt-states.git
@@ -19,3 +22,14 @@ gitfs_remotes:
 file_roots:
   base:
     - /srv/salt/
+
+reactor:
+  - 'salt/key':
+    - /srv/reactor/minion-accepted.sls
+  - 'minion_start':
+    - /srv/reactor/minion-connected.sls
+
+schedule:
+  highstate:
+    function: state.highstate
+    hours: 8

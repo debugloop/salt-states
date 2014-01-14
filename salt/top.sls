@@ -2,6 +2,7 @@ base:
   '*':
     - basic_packages
     - myuser
+    - root_password
     - ntp
 
   'nightfort':
