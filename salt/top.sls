@@ -1,7 +1,6 @@
 base:
   '*':
     - basic_packages
-    - root_password
     - myuser
     - ntp
 
