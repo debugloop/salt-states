@@ -1,2 +1,2 @@
 *.pyc
-pillar/*_root_password.sls
+pillar/*_password.sls

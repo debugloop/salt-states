@@ -1,6 +1,7 @@
 base:
   '*':
     - basic_packages
+    - salt_minion_conf
     - myuser
     - ntp
 
