@@ -8,28 +8,20 @@ state_output: mixed
 # Environments are mapped to branches of the same name, while master maps to
 # the base environment.
 fileserver_backend:
-  - roots
   - git
 
+# Specify where the runners are located
 runner_dirs:
   - /srv/runners
 
-# Specify the exact location of one or more git repositorys here:
+# Specify the exact location of one or more git repositories
 gitfs_remotes:
-  - git@github.com:danieljn/salt-states.git
+  - https://github.com/danieljn/salt-states.git
 
-# Specify the directories used for the state tree
-file_roots:
+# Make it use the correct subdirectory within git
+gitfs_root: salt
+
+# Specify the directories used for the pillar tree
+pillar_roots:
   base:
-    - /srv/salt/
-
-reactor:
-  - 'salt/key':
-    - /srv/reactor/minion-accepted.sls
-  - 'minion_start':
-    - /srv/reactor/minion-connected.sls
-
-schedule:
-  highstate:
-    function: state.highstate
-    hours: 8
+    - /srv/pillar
