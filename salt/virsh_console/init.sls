@@ -3,9 +3,9 @@
     - text: T0:S12345:respawn:/sbin/getty -hL ttyS0 115200 vt100
 
 /etc/default/grub:
-  file.sed:
-    - before: ^GRUB_CMDLINE_LINUX_DEFAULT="quiet"$
-    - after: GRUB_CMDLINE_LINUX_DEFAULT="quiet serial=tty0 console=ttyS0,115200n8"
+  file.replace:
+    - pattern: ^GRUB_CMDLINE_LINUX_DEFAULT="quiet"$
+    - repl: GRUB_CMDLINE_LINUX_DEFAULT="quiet serial=tty0 console=ttyS0,115200n8"
 
 update-grub:
   cmd.wait:
