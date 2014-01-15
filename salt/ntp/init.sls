@@ -9,5 +9,6 @@ ntp:
 
 /etc/ntp.conf:
   file.managed:
+    - backup: minion
     - source:
       - salt://ntp/ntp.conf
