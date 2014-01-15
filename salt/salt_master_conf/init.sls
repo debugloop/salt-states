@@ -7,6 +7,7 @@ salt-master:
     - watch:
       - file: /etc/salt/master
       - file: /etc/salt/master.d/schedule.conf
+      - file: /etc/salt/master.d/mail.conf
       - file: /etc/salt/master.d/reactor.conf
 
 saltfiles:
