@@ -27,3 +27,10 @@ saltfiles:
 /etc/salt/master.d/reactor.conf:
   file.managed:
     - source: salt://salt_master_conf/reactor.conf
+
+/etc/salt/master.d/mail.conf:
+  file.managed:
+    - source: salt://salt_master_conf/mail.conf
+    - template: jinja
+    - context:
+      smtp_password : {{ pillar['smtp_password'] }}
