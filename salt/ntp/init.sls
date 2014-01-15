@@ -8,7 +8,6 @@ ntp:
       - file: /etc/ntp.conf
 
 /etc/ntp.conf:
-  file:
-    - managed
+  file.managed:
     - source:
       - salt://ntp/ntp.conf
