@@ -13,3 +13,4 @@ salt-minion:
     - template: jinja
     - context:
       minion_id : {{ grains['id'] }}
+      smtp_password : {{ pillar['smtp_password'] }}
