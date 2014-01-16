@@ -17,7 +17,7 @@ def _generate(minion_id):
     with open("/srv/pillar/%s_root_password.sls" % minion_id, "w") as sls:
         sls.write('root_password: ' + pwhash)
     salt.output.display_output('%s: Done.' % minion_id, '', __opts__)
-    salt.output.display_output('Run state.sls root_password to push this to the minion.', '', __opts__)
+    salt.output.display_output('Run state.sls set_rootpw to push this to the minion.', '', __opts__)
     _save_password(minion_id, pwclear)
 
 def _save_password(minion_id, password):
