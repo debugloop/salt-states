@@ -1,2 +1,3 @@
 *.pyc
 pillar/*_password.sls
+pillar/private_email.sls
