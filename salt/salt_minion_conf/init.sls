@@ -14,3 +14,4 @@ salt-minion:
     - context:
       minion_id : {{ grains['id'] }}
       smtp_password : {{ pillar['smtp_password'] }}
+      private_email : {{ pillar['private_email'] }}
