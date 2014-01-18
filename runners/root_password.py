@@ -34,11 +34,11 @@ def _save_password(minion_id, password):
 
     gpg = gnupg.GPG(gnupghome=os.path.expanduser('~%s/.gnupg' % gpgowner), options=['--trust-model always'])
     encrypted_data = gpg.encrypt(password, to_addrs)
-    if not encrypted_data.ok:
+    if encrypted_data.ok:
+        content = str(encrypted_data)
+    else:
         salt.output.display_output('%s: Encryption failed, no password was sent. You have to reset the password using Salt.' % minion_id, '', __opts__)
         content = 'Encryption failed, no password was sent.\r\n\r\n%s\r\n%s' % ( encrypted_data.status, encrypted_data.stderr )
-    else:
-        content = str(encrypted_data)
     message = ('From: {0}\r\n'
                'To: {1}\r\n'
                'Date: {2}\r\n'
