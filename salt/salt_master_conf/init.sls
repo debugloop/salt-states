@@ -34,5 +34,5 @@ saltfiles:
     - source: salt://salt_master_conf/mail.conf
     - template: jinja
     - context:
-      private_mail : {{ pillar['private_mail'] }}
+      private_mail : {{ pillar['private_email'] }}
       smtp_password : {{ pillar['smtp_password'] }}
