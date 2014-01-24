@@ -5,7 +5,7 @@ base:
     - myuser
     - ntp
 
-  'nightfort':
+  'hyper.danieljn.de':
     - salt_master_conf
 
   'virtual:kvm':

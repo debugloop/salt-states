@@ -11,10 +11,11 @@ import grp
 import crypt
 
 def _generate(minion_id):
+    hostname = minion_id.split('.')[0]
     p = subprocess.Popen('pwgen -s 40 -N 1', shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
     pwclear = p.stdout.read().strip()
     pwhash = crypt.crypt(pwclear, "$6$%s" % os.urandom(8).encode('base_64').strip())
-    with open("/srv/pillar/%s_root_password.sls" % minion_id, "w") as sls:
+    with open("/srv/pillar/%s/root_password.sls" % hostname, "w") as sls:
         sls.write('root_password: ' + pwhash)
     salt.output.display_output('%s: Done.' % minion_id, '', __opts__)
     salt.output.display_output('Run state.sls set_rootpw to push this to the minion.', '', __opts__)
@@ -32,7 +33,7 @@ def _save_password(minion_id, password):
     gpgowner = config.get('gpgowner')
     salt.output.display_output('%s: Sending encrypted password to: %s.' % (minion_id, to_addrs), '', __opts__)
 
-    gpg = gnupg.GPG(gnupghome=os.path.expanduser('~%s/.gnupg' % gpgowner), options=['--trust-model always'])
+    gpg = gnupg.GPG(gnupghome=os.path.expanduser('~%s/.gnupg' % gpgowner))
     encrypted_data = gpg.encrypt(password, to_addrs)
     if encrypted_data.ok:
         content = str(encrypted_data)
