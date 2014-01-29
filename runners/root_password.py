@@ -11,11 +11,13 @@ import grp
 import crypt
 
 def _generate(minion_id):
-    hostname = minion_id.split('.')[0]
     p = subprocess.Popen('pwgen -s 40 -N 1', shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
     pwclear = p.stdout.read().strip()
     pwhash = crypt.crypt(pwclear, "$6$%s" % os.urandom(8).encode('base_64').strip())
-    with open("/srv/pillar/%s/root_password.sls" % hostname, "w") as sls:
+    path = "/srv/pillar/%s" % minion_id.replace('.', '')
+    if not os.path.exists(path):
+        os.makedirs(path)
+    with open(path + "/root_password.sls", "w") as sls:
         sls.write('root_password: ' + pwhash)
     salt.output.display_output('%s: Done.' % minion_id, '', __opts__)
     salt.output.display_output('Run state.sls set_rootpw to push this to the minion.', '', __opts__)
