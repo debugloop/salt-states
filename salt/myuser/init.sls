@@ -7,6 +7,8 @@ danieln:
     - fullname: Daniel Naegele
     - home: /home/danieln
     - shell: /bin/bash
+    - password: {{ pillar['user_password'] }}
+    - enforce_password: False
     - create_home: True
     - remove_groups: False
     - groups:
