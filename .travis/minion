@@ -1,4 +1,13 @@
+id: travisminion
+
 file_client: local
 file_roots:
   base:
     - /srv/salt
+
+runner_dirs:
+  - /srv/runners
+
+pillar_roots:
+  base:
+    - /srv/pillar

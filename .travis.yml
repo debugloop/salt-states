@@ -10,6 +10,8 @@ install:
   # Copy these states
   - sudo cp -r . /srv
   - sudo cp .travis/minion /etc/salt/minion
+  - sudo cp .travis/*.sls /srv/pillar/
+  - sudo cp -r .travis/travisminion /srv/pillar/
   - sudo service salt-minion restart
 
   # Additional debug help
