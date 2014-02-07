@@ -11,3 +11,7 @@ base:
   'virtual:kvm':
     - match: grain
     - virsh_console
+
+experimental:
+  'hyper.danieljn.de':
+    - kvmate

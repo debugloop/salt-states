@@ -5,3 +5,7 @@ base:
     - private_email
   '{{ grains['id'] }}':
     - {{ grains['id']|replace(".","") }}.root_password
+
+experimental:
+  'hyper*':
+    - kvmate_password
