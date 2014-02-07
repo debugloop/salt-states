@@ -25,3 +25,5 @@ gitfs_root: salt
 pillar_roots:
   base:
     - /srv/pillar
+  experimental:
+    - /srv/pillar_experimental
