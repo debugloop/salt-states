@@ -16,7 +16,7 @@ runner_dirs:
 
 # Specify the exact location of one or more git repositories
 gitfs_remotes:
-  - https://github.com/danieljn/salt-states.git
+  - git://github.com/danieljn/salt-states.git
 
 # Make it use the correct subdirectory within git
 gitfs_root: salt
