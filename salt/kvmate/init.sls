@@ -50,7 +50,7 @@ dependencies:
     - target: {{ project_home }}/src
   file.managed:
     - name: {{ project_home }}/src/{{ project_name }}/{{ project_name }}/settings/local_settings.py
-    - source: salt://{{ project_name }}/local_settings.py
+    - source: salt://{{ project_name }}/my_local_settings.py
     - user: {{ project_name }}
     - group: {{ project_name }}
     - template: jinja
@@ -58,7 +58,7 @@ dependencies:
       project_name: {{ project_name }}
   virtualenv.managed:
     - name: {{ project_home }}
-    - requirements: {{ project_home }}/src/requirements.d/production.txt
+    - requirements: {{ project_home }}/src/requirements.d/dev.txt
     - user: {{ project_name }}
     - no_chown: True
     - cwd: {{ project_home }}/src/requirements.d/
@@ -68,6 +68,12 @@ dependencies:
     - watch:
       - git: {{ project_name }}
 
+supervisorctl reread:
+  cmd.wait:
+    - watch:
+      - file: /etc/supervisor/conf.d/{{ project_name }}.conf
+      - file: /etc/supervisor/conf.d/{{ project_name }}_huey.conf
+
 supervisor_{{ project_name }}:
   supervisord.running:
     - name: {{ project_name }}
@@ -75,8 +81,9 @@ supervisor_{{ project_name }}:
     - watch:
       - file: {{ project_name }}
     - require:
+      - cmd: supervisorctl reread
       - pkg: dependencies
-      - file: {{ project_name }}
+      - file: /etc/supervisor/conf.d/{{ project_name }}.conf
   file.managed:
     - name: /etc/supervisor/conf.d/{{ project_name }}.conf
     - source: salt://{{ project_name }}/supervisor_{{ project_name }}.conf
@@ -86,14 +93,16 @@ supervisor_{{ project_name }}:
       project_home: {{ project_home }}
 
 # Supervisor for a component
-{{ project_name }}_huey:
+supervisor_{{ project_name }}_huey:
   supervisord.running:
+    - name: {{ project_name }}_huey
     - update: True
     - watch:
-      - file: {{ project_name }}_huey
+      - file: supervisor_{{ project_name }}_huey
     - require:
+      - cmd: supervisorctl reread
       - pkg: dependencies
-      - file: {{ project_name }}_huey
+      - file: /etc/supervisor/conf.d/{{ project_name }}_huey.conf
   file.managed:
     - name: /etc/supervisor/conf.d/{{ project_name }}_huey.conf
     - source: salt://{{ project_name }}/supervisor_{{ project_name }}_huey.conf

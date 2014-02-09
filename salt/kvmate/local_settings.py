@@ -15,5 +15,5 @@ DATABASES = {
 ###############################################################
 ####    Get the rest from the local_settings.example.py     ###
 ###############################################################
-from django.exceptions import ImproperlyConfigured
+from django.core.exceptions import ImproperlyConfigured
 raise ImproperlyConfigured('do NOT use default settings, change the local_settings.py delivered by Salt')
