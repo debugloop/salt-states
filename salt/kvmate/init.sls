@@ -116,16 +116,13 @@ postgresql:
   postgres_database.present:
     - name: {{ project_name }}
     - owner: {{ project_name }}
-    - runas: postgres
+    - user: postgres
+    - require:
+      - postgres_user: postgresql
   postgres_user.present:
     - name: {{ project_name }}
-    - createdb: False
-    - createuser: False
-    - encrypted: True
-    - superuser: False
-    - replication: False
     - password: {{ pillar['postgres_password'] }}
-    - runas: postgres
+    - user: postgres
 
 # Webserver
 tls.create_self_signed_cert:

@@ -17,7 +17,7 @@ cd $DJANGODIR
 source {{ project_home }}/bin/activate
 export DJANGO_SETTINGS_MODULE=$DJANGO_SETTINGS_MODULE
 export PYTHONPATH=$DJANGODIR:$PYTHONPATH
-export PROD=1
+#export PROD=1
 
 # Create the run directory if it doesn't exist
 RUNDIR=$(dirname $SOCKFILE)
