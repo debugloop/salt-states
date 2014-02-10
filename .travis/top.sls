@@ -9,3 +9,4 @@ base:
     - salt_minion_conf
     - set_rootpw
     - virsh_console
+    - django
