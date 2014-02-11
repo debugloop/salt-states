@@ -1,2 +1,0 @@
-kvmate_secret_key: your.key:use.pwgen.-s.64
-kvmate_postgres_password: your.key:use.something.safe.here,too
