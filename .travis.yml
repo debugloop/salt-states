@@ -6,23 +6,29 @@ branches:
     - experimental
 
 before_install:
+# deploy salt
   - sudo apt-get update
   - curl -L http://bootstrap.saltstack.org | sudo sh -s -- git develop
 
 install:
-  # Copy these states
+# general location
   - sudo cp -r . /srv
-  - sudo cp .travis/minion /etc/salt/minion
-  - sudo cp .travis/!(top*).sls /srv/pillar/
-  - sudo cp .travis/top.sls /srv/salt/
-  - sudo cp -r .travis/travisminion /srv/pillar/
+# overwrites for travis
+  - sudo cp -r .travis/conf/* /etc/salt/
+  - sudo cp -r .travis/pillar/* /srv/pillar/
+  - sudo cp -r .travis/salt/* /srv/salt/
+# apply those
   - sudo service salt-minion restart
 
 before_script:
+# show all grains and pillar data
   - sudo salt-call grains.items --local
+  - sudo salt-call pillar.items --local
 
 script:
+# compile the highstate, but do not run it
   - sudo salt-call state.show_highstate --local --retcode-passthrough
 
-after_failure:
+after_script:
+# we want to check the logs
   - sudo cat /var/log/salt/minion
