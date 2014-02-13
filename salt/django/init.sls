@@ -2,15 +2,14 @@
 # also supports further modules using hypervisor if you drop your config in the
 # files directory, like I did for huey.
 
-{% set project_name = 'kvmate' %}
-{% set git_url = 'https://github.com/kvmate/kvmate.git' %}
-{% set server_name = 'dn.user.selfnet.de' %}
-{% set salt_master = 'salt' %}
+{% set project_name = pillar['django_project_name'] %}
+{% set git_url = pillar['django_git_url'] %}
+{% set server_name = pillar['django_server_name'] %}
 
 # gunicorn is practically required for the runserver and nginx assumes its
 # socket. You can freely modify the following ones to your needs.
-{% set components = ['gunicorn','huey'] %}
-{% set additional_deps = [] %}
+{% set components = pillar['django_deploy_components'] %}
+{% set additional_deps = pillar['django_additional_dependencies'] %}
 
 # best don't edit this one:
 {% set project_home = '/home/' + project_name %}

@@ -7,3 +7,4 @@ base:
     - {{ grains['id']|replace(".","") }}.root_password
   'hyper*':
     - kvmate_passwords
+    - django
