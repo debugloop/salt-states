@@ -4,6 +4,6 @@ base:
     - private_email
     - smtp_password
     - user_password
-    - travisminion.root_password
+    - root_password.travisminion
     - django
     - kvmate_passwords
