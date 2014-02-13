@@ -12,7 +12,7 @@ dependencies:
       - postgresql-server-dev-all
       - python-psycopg2
       - supervisor
-{% for package in additional_deps -%}
+{%- for package in additional_deps %}
       - {{ package }}
 {% endfor %}
   virtualenv.managed:
