@@ -14,10 +14,10 @@ def _generate(minion_id):
     p = subprocess.Popen('pwgen -s 40 -N 1', shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
     pwclear = p.stdout.read().strip()
     pwhash = crypt.crypt(pwclear, "$6$%s" % os.urandom(8).encode('base_64').strip())
-    path = "/srv/pillar/%s" % minion_id.replace('.', '')
+    path = "/srv/pillar/root_password"
     if not os.path.exists(path):
         os.makedirs(path)
-    with open(path + "/root_password.sls", "w") as sls:
+    with open(path + "/%s.sls" % minion_id.replace('.', ''), "w") as sls:
         sls.write('root_password: ' + pwhash)
     salt.output.display_output('%s: Done.' % minion_id, '', __opts__)
     salt.output.display_output('Run state.sls set_rootpw to push this to the minion.', '', __opts__)

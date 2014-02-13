@@ -1,5 +1,5 @@
 *.pyc
-pillar/*/root_password.sls
+pillar/root_password/*
 pillar/*_password.sls
 pillar/*_passwords.sls
 pillar/private_*.sls

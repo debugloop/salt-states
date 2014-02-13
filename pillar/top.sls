@@ -4,7 +4,7 @@ base:
     - user_password
     - private_email
   '{{ grains['id'] }}':
-    - {{ grains['id']|replace(".","") }}.root_password
+    - root_password.{{ grains['id']|replace(".","") }}
   'hyper*':
     - kvmate_passwords
     - django
