@@ -14,4 +14,4 @@ base:
 
 experimental:
   'hyper.danieljn.de':
-    - kvmate
+    - django
