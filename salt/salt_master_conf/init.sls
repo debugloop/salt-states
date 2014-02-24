@@ -21,6 +21,10 @@ saltfiles:
   file.managed:
     - source: salt://salt_master_conf/master
 
+/etc/salt/master.d/redis.conf:
+  file.managed:
+    - source: salt://salt_master_conf/redis.conf
+
 /etc/salt/master.d/schedule.conf:
   file.managed:
     - source: salt://salt_master_conf/schedule.conf
