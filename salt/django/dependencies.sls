@@ -17,7 +17,7 @@ dependencies:
 {% endfor %}
   virtualenv.managed:
     - name: {{ project_home }}
-    - requirements: {{ project_home }}/src/requirements.d/dev.txt
+    - requirements: {{ project_home }}/src/requirements.d/production.txt
     - user: {{ project_name }}
     - no_chown: True
     - cwd: {{ project_home }}/src/requirements.d/

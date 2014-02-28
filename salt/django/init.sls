@@ -39,3 +39,5 @@ include:
     - rev: master
     - user: {{ project_name }}
     - target: {{ project_home }}/src
+    - require:
+      - user: {{ project_name }}
