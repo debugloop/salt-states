@@ -1,6 +1,5 @@
 salt-minion:
-  pkg:
-    - installed
+  pkg.installed: []
   service.running:
     - require:
       - pkg: salt-minion
@@ -11,7 +10,3 @@ salt-minion:
   file.managed:
     - source: salt://salt_minion_conf/smtp.conf
     - template: jinja
-    - context:
-      minion_id : {{ grains['id'] }}
-      smtp_password : {{ pillar['smtp_password'] }}
-      private_email : {{ pillar['private_email'] }}

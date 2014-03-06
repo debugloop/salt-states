@@ -1,6 +1,5 @@
 salt-master:
-  pkg:
-    - installed
+  pkg.installed: []
   service.running:
     - require:
       - pkg: salt-master

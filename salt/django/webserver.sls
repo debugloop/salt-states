@@ -6,8 +6,7 @@ tls.create_self_signed_cert:
     - watch:
       - pkg: nginx {# workaround: trigger on nginx package #}
 nginx:
-  pkg:
-    - installed
+  pkg.installed: []
   service.running:
     - reload: True
     - watch:
