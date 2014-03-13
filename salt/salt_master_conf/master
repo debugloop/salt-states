@@ -19,6 +19,7 @@ gitfs_remotes:
   - git://github.com/danieljn/salt-states.git
 
 # Make it use the correct subdirectory within git
+gitfs_mountpoint: salt://
 gitfs_root: salt
 
 # Specify the directories used for the pillar tree
