@@ -14,9 +14,13 @@ unpack:
       - file: /root/redis-{{ version }}.tar.gz
 
 make:
+  pkg.installed:
+    - name: build-essential
   cmd.wait:
     - name: make
     - cwd: /root/redis-{{ version }}
+    - require:
+      - pkg: make
     - watch:
       - cmd: unpack
 
