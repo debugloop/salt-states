@@ -2,8 +2,8 @@
 Salt States |img|
 =================
 
-.. |img| image:: https://travis-ci.org/danieljn/salt-states.png?branch=master
-  :target: https://travis-ci.org/danieljn/salt-states
+.. |img| image:: https://travis-ci.org/analogbyte/salt-states.png?branch=master
+  :target: https://travis-ci.org/analogbyte/salt-states
 
 This repository contains some salt states I use and experiment with.
 
