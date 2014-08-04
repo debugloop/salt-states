@@ -41,12 +41,12 @@ def _set_password(minion_id, pwhash):
 # methods manipulating the pass host
 def _create_duplicate(minion_id):
     _log('%s: Creating a backup of the gpg file on the pass host' % minion_id)
-    cmd = client.cmd(passhost, 'file.copy', [passpath + minion_id + '.gpg', passpath + subdir + minion_id + '.bak.gpg'])
+    cmd = client.cmd(passhost, 'file.copy', [passpath + minion_id + '.gpg', passpath + minion_id + '.bak.gpg'])
     return cmd.get(passhost) if cmd else False
 
 def _restore_from_duplicate(minion_id):
     _log('%s: Restoring the old gpg file on the pass host' % minion_id)
-    cmd = client.cmd(passhost, 'file.rename', [passpath + minion_id + '.bak.gpg', passpath + subdir + minion_id + '.gpg'])
+    cmd = client.cmd(passhost, 'file.rename', [passpath + minion_id + '.bak.gpg', passpath + minion_id + '.gpg'])
     return cmd.get(passhost) if cmd else False
 
 def _remove_duplicate(minion_id):
@@ -63,7 +63,7 @@ def _encrypt_password(minion_id, password):
 def _send_password(minion_id):
     _log('%s: Sending the encrypted password to the pass host' % minion_id)
     cmd = client.cmd(passhost, 'cp.get_file', ['salt://server/%s' % minion_id, passpath + minion_id + '.gpg'], kwarg={'saltenv': 'pass'})
-    return cmd.get(passhost) == passpath + subdir + minion_id + '.gpg' if cmd else False
+    return cmd.get(passhost) == passpath + minion_id + '.gpg' if cmd else False
 
 def regen(minion_id):
     '''
