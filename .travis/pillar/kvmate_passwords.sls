@@ -1,2 +1,0 @@
-kvmate_postgres_password: blabla
-kvmate_secret_key: bananas

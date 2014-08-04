@@ -1,30 +1,26 @@
-# This is a minimized config for the salt master, as most of the defaults are
+# this is a minimized config for the salt master, as most of the defaults are
 # well chosen.
 
-# This removes unnecessary output from the salt command
 state_output: mixed
 
-# This sets the gitfs backend as our only method of state retrieval.
-# Environments are mapped to branches of the same name, while master maps to
-# the base environment.
 fileserver_backend:
+  - roots
   - git
 
-# Specify where the runners are located
+# support root_password runner with the salt env around its workdir
+file_roots:
+  pass:
+    - /root/password_store
+
 runner_dirs:
   - /srv/runners
 
-# Specify the exact location of one or more git repositories
 gitfs_remotes:
-  - git://github.com/danieljn/salt-states.git
+  - git://github.com/analogbyte/salt-states.git
 
-# Make it use the correct subdirectory within git
-gitfs_mountpoint: salt://
+# make it use the correct subdirectory within git
 gitfs_root: salt
 
-# Specify the directories used for the pillar tree
 pillar_roots:
   base:
     - /srv/pillar
-  experimental:
-    - /srv/pillar_experimental

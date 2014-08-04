@@ -1,0 +1,2 @@
+master: salt.local
+id: {{ grains['fqdn'] }}

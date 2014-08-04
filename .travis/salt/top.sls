@@ -7,6 +7,4 @@ base:
     - python
     - salt_master_conf
     - salt_minion_conf
-    - set_rootpw
     - virsh_console
-    - django
