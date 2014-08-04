@@ -10,7 +10,7 @@ fileserver_backend:
 # support root_password runner with the salt env around its workdir
 file_roots:
   pass:
-    - /root/password_store
+    - /root/password-store
 
 runner_dirs:
   - /srv/runners
