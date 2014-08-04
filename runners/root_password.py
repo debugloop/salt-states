@@ -19,7 +19,6 @@ passpath='/root/.password-store'
 passhost = 'nightfort'
 
 def _log(msg):
-    report.append('%s' % msg)
     salt.output.display_output('%s' % msg, '', __opts__)
 
 def _generate_passwords(minion_id):
