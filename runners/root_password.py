@@ -15,7 +15,7 @@ import gnupg
 client = salt.client.LocalClient()
 gpg = gnupg.GPG()
 workpath='/root/password-store/server/' # must be inside a salt fileroot
-passpath='/root/.password-store'
+passpath='/root/.password-store/'
 passhost = 'nightfort'
 
 def _log(msg):
