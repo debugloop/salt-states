@@ -12,7 +12,7 @@ salt-master:
 saltfiles:
   git.latest:
     - name: https://github.com/analogbyte/salt-states.git
-    - user: danieln
+    - user: root
     - rev: master
     - target: /srv
 
